@@ -1,4 +1,9 @@
-$(document).ready(function() {
-console.log("hello");
+$('#search-button').on('click', function(event) {
 
-}); //end of app.js
+    event.preventDefault();
+    
+    var search = $('search-input').val();
+    
+    console.log(search); // Dumping value of input field on console panel
+    
+    });
