@@ -5,10 +5,9 @@ $(document).ready(function() {
 
     //will display the venues that the artist will play on the search page 
     function venueSelect(artist){
+        var venues = [];
         
-
     }
-
 
    $("#submit").on("click", function(){
         //var declaration 

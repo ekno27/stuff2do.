@@ -13,7 +13,6 @@
     <!-- local css -->
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css"/>
     <!-- local js -->
-
     <!-- Exclusive JS to process artist name and select the appropiate venue-->
     <script src="assets/javascript/searchScript.js"></script>
     <!-- Reference to results page JS so that artist variable can be passed  -->
@@ -25,7 +24,7 @@
         <div class="container">
             <!-- Row Containing search queries -->
                 <div class="row">
-                <div class="col-md-10">
+                    <div class="col-md-12">
                     <!-- Search form -->
                     <form autocomplete="off">
                             <div class="form-group">
@@ -33,16 +32,23 @@
                             <input type="form" class="form-control" id="search-term-id">
                             </div>
                         </form>
+                    </div>
+                </div>
             <!--Responsive buttons -->
                 <div class="row buttons">
                     <div class="col-md-12">
                     <button class="btn" id="submit"> Submit</button>
+                    </div>
                 </div>
-                </div>
-                </div>
+            <!-- Div will show venue results: name and city -->
+               <div class="row">
+                   <div class="col-md-8">
+                       <div id="venue-space"></div>
+                   </div>
+               </div>
         
                 
-            </div>
+        </div> <!--close of container div-->
     
 </body>
 </html>
