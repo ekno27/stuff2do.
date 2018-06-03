@@ -11,11 +11,92 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- local css -->
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css"/> 
     <!-- local js -->
     <script src="assets/javascript/searchScript.js"></script>
+    <!-- JS to retrieve data obtained in search page-->
+    <script src="assets/javascript/app.js"></script>
+
 </head>
 <body>
+
+    <!-- Skeleton for results page: Will look similar to template -->
+    <div class="container">
+        
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Stuff to do</h1>
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-primary"> Search for another concert</button>
+        </div>
+    </div>
+<br><br>
+    <div class="row">
+        <div class="col-md-5">
+            <!-- Card-->
+            <div class="card">
+             <!-- card body -->
+             <div class="card-body">
+                <!-- The following content will change depending on the search page results -->
+                <h5 class="card-title" id="artist">
+                    Artist
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted" id="venue">Card subtitle</h6>
+                <p class="card-text" id="city">City</p>
+             </div>
+            </div> <!--End of card div-->
+        </div>
+
+        <div class="col-md-2">
+            <!-- Div only created to make space between the band name and venue location card and the locations -->
+        </div>
+        <div class="col-md-5" id="current-selection">
+            <!-- Card-->
+            <div class="card">
+                    <!-- card body -->
+                    <div class="card-body">
+                       <!-- The following content will change depending on the search page results -->
+                       <h5 class="card-title" id="location-name">
+                           Name of restaurant
+                       </h5>
+                       <h6 class="card-subtitle mb-2 text-muted" id="location-rate">Rating</h6>
+                       <p class="location-description" id="city">Brief description of what the selected location offers</p>
+                    </div>
+                   </div> <!--End of card div-->
+            
+        </div> <!--end of current selection div-->
+
+    </div> <!--end of second row-->
+    <br><br>
+    <div class="row">
+        <div class="col-md-6">
+            <div id="map">
+                This div will feature a map
+            </div>
+
+            <div id="category-buttons">
+                    <button type="button" class="btn" id="food">Food </button>
+                    <button type="button" class="btn" id="bars">Bars</button>
+                    <button type="button" class="btn" id="parking">Parking</button>
+                    <button type="button" class="btn" id="hotels">Hotels</button>
+                    
+            </div>
+        </div>
+        <div class="col-md-1">
+            <!-- Empty space for organizational purposes  -->
+        </div>
+        <div class="col-md-4">
+            <h2>Related results: List of places of the same category</h2>
+            <div id="related-results">
+                <!-- related results will go here -->
+            </div>
+        </div>
+    </div>
     
+    
+    
+    
+    </div>    
 </body>
 </html>
