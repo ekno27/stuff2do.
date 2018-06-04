@@ -83,6 +83,7 @@ function eventOptions(artist){
 //event listener for enter key
 $(window).keydown(function(event){
     if(event.keyCode == 13) {
+        event.preventDefault();
         $("#results").hide(); 
         //show results
         $("#append-venues").empty();
@@ -92,12 +93,13 @@ $(window).keydown(function(event){
         artist = $("#artist-name").val().trim();
         // console.log("artist: " + artist);
         // eventOptions(artist, venue);
+        displayArtistInfo()
         eventOptions(artist);
       return false;
     }
   });
 $("#submit").on("click", function(){
-    event.preventDefault();
+   
     $("#results").hide(); 
     //show results
     $("#append-venues").empty();
