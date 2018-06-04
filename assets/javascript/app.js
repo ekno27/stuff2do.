@@ -83,6 +83,8 @@ function eventOptions(artist){
 //event listener for enter key
 $(window).keydown(function(event){
     if(event.keyCode == 13) {
+        
+        if(artist = $("#artist-name").val().trim() !==""){
         event.preventDefault();
         $("#results").hide(); 
         //show results
@@ -91,28 +93,45 @@ $(window).keydown(function(event){
     
         //var declaration 
         artist = $("#artist-name").val().trim();
+        
+            $("#venue-options").show();
+            displayArtistInfo()
+            eventOptions(artist);
+            return false;
+        
+        
         // console.log("artist: " + artist);
         // eventOptions(artist, venue);
-        displayArtistInfo()
-        eventOptions(artist);
-      return false;
+        }
+        else{
+            alert("Please enter an artist!");
+        }
     }
   });
 $("#submit").on("click", function(){
-   
+    if( $("#artist-name").val().trim()!==""){
+
+    
+    event.preventDefault();
     $("#results").hide(); 
     //show results
     $("#append-venues").empty();
-    $("#venue-options").show();
 
     //var declaration 
     artist = $("#artist-name").val().trim();
     // console.log("artist: " + artist);
     // eventOptions(artist, venue);
-    displayArtistInfo(); 
-    eventOptions(artist);  
     
-
+        $("#venue-options").show();
+        displayArtistInfo()
+        eventOptions(artist);
+        return false;
+    }
+    else{
+        alert("Please enter an artist!");
+        
+    }
+    
 });
 
 $("#append-venues").on("click","#sub-event", function(){
