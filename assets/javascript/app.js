@@ -18,7 +18,17 @@ $("#venue-options").hide();
 
 
 
-    
+function displayArtistInfo(){
+  queryAI = "https://rest.bandsintown.com/artists/"+artist+"?app_id=ekno27"
+
+  $.ajax({
+      url: queryAI,
+      method: "GET"
+  }).then(function(response){
+      artist = response.name
+      console.log(artist)
+  });
+}   
 
 //displays band info on corresponding div
  function displayBandInfo(venue, city){
@@ -97,7 +107,9 @@ $("#submit").on("click", function(){
     artist = $("#artist-name").val().trim();
     // console.log("artist: " + artist);
     // eventOptions(artist, venue);
-    eventOptions(artist);    
+    displayArtistInfo(); 
+    eventOptions(artist);  
+    
 
 });
 
