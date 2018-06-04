@@ -2,6 +2,10 @@
     margin-top:2%;
 }
 
+#sub-event:hover{
+    background-color: lightblue;
+}
+
 
 
 .btn{

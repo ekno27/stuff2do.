@@ -119,6 +119,14 @@ $("#append-venues").on("click","#sub-event", function(){
 
 });
 
+//6/4/18-------
+$(document).ready(function(){
+  $("sub-event").hover(function(){
+      $(this).css("background-color", "yellow");
+  });
+});
+//end---------
+
 $("#category-buttons").on("click", ".btn",function(){
     category = $(this).attr("id");
     // console.log(category);
