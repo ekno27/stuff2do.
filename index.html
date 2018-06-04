@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <title>Page Title</title>
+    <title>stuff2do.</title>
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" \n integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
@@ -13,8 +13,13 @@
     <!-- local css -->
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css"/> 
     <!-- local js -->
+    
     <script src="assets/javascript/app.js"></script>
-
+    <!-- Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMJTxAsGFVN4EewaI3Kg5E5eHvC0FKuqs&callback=initMap&libraries=places"
+    async ></script>
+    
+  
 </head>
 <body>
 
@@ -23,38 +28,58 @@
         
     <div class="row">
         <div class="col-md-8">
-            <h1>Stuff to do</h1>
+            <h1>stff2do.</h1>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-12">
-        <!-- Search for artist -->
-        <form autocomplete="off">
-                <div class="form-group">
-                <label for="exampleFormControlInput1">Search for an artist:</label>
-                <input type="form" class="form-control" id="artist-name">
-                </div>
-            </form>
-        <!-- Search for venue -->
-        <form autocomplete="off">
-                <div class="form-group">
-                <label for="exampleFormControlInput1">Venue Artist is playing:</label>
-                <input type="form" class="form-control" id="venue-name">
-                </div>
-            </form>
-        </div>
-    </div>
+            <div class="col-md-5">
+                <!-- Search for artist -->
+                <form autocomplete="off">
+                    <div class="form-group">
+                    <label for="exampleFormControlInput1">For whenever you don't know where to go before or after a concert.</label>
+                    <input type="form" class="form-control" id="artist-name" placeholder="Enter an artist you will be seeing">
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-5">
+               
+            </div>
+            <div class="col-md-2">
+                <br>
+                <!--Responsive buttons -->
+                    <button class="btn btn-primary" id="submit"> Submit</button>
+            </div>
+     </div>
 
-    <!--Responsive buttons -->
-    <div class="row buttons"> <!--Two different classes-->
-        <div class="col-md-12">
-        <button class="btn btn primary" id="submit"> Submit</button>
+    <div class="row" id="venue-options">
+        <div class="col-md-3">
+            <!-- Empty space for organization -->
         </div>
-    </div>
+
+        <div class="col-md-6" >
+            <h2>Select a venue </h2>
+            <div id="append-venues">
+                <!-- Div will be used to place venue options thru DOM
+                Once a venue is picked this div will ~disappear~ -->
+            </div>
+         
+        </div>
+
+        <div class="col-md-3">
+                <!-- Empty space for organization -->
+        </div>
+       
+     </div>
+    
+        
+
+<div id="results">
 <br><br>
     <div class="row">
         <div class="col-md-5">
+           
+            <h2>Event Information: </h2>
             <!-- Card-->
             <div class="card">
              <!-- card body -->
@@ -73,16 +98,18 @@
             <!-- Div only created to make space between the band name and venue location card and the locations -->
         </div>
         <div class="col-md-5" id="current-selection">
+            <h2> Current Selection: </h2>
             <!-- Card-->
             <div class="card">
                     <!-- card body -->
                     <div class="card-body">
                        <!-- The following content will change depending on the search page results -->
                        <h5 class="card-title" id="location-name">
-                           Name of restaurant
+                           Click on a map marker to get more information of the location
                        </h5>
-                       <h6 class="card-subtitle mb-2 text-muted" id="location-rate">Rating</h6>
-                       <p class="location-description" id="city">Brief description of what the selected location offers</p>
+                       <h6 class="card-subtitle mb-2 text-muted" id="location-rate"> Learn about the location's rating</h6>
+                       <p class="location-address" id="city">Find out its address </p>
+                       <a href="#" id="page-link" class="card-link" target="_blank">Link to selection's website</a>
                     </div>
                    </div> <!--End of card div-->
             
@@ -92,32 +119,40 @@
     <br><br>
     <div class="row">
         <div class="col-md-6">
+            
+                <div id="category-buttons">
+                        <button type="button btn-success" class="btn btn-success" id="restaurant">Food </button>
+                        <button type="button" class="btn btn-info" id="bar">Bars</button>
+                        <button type="button" class="btn btn-warning" id="parking">Parking</button>
+                        <button type="button" class="btn" id="lodging">Hotels</button>
+                        
+                    </div>
+             
+                    <br>
+                
             <div id="map">
                 This div will feature a map
-            </div>
-
-            <div id="category-buttons">
-                    <button type="button" class="btn" id="food">Food </button>
-                    <button type="button" class="btn" id="bars">Bars</button>
-                    <button type="button" class="btn" id="parking">Parking</button>
-                    <button type="button" class="btn" id="hotels">Hotels</button>
-                    
-            </div>
+           
+        </div>
         </div>
         <div class="col-md-1">
             <!-- Empty space for organizational purposes  -->
         </div>
-        <div class="col-md-4">
-            <h2>Related results: List of places of the same category</h2>
+        <div class="col-md-5">
+            <div class="card">
+            <h2>Related results: </h2>
+           <div class="card-body">
             <div id="related-results">
                 <!-- related results will go here -->
             </div>
+        </div>
+        </div>
         </div>
     </div>
     
     
     
-    
+    </div> <!--End of results div-->  
     </div>    
 </body>
 </html>

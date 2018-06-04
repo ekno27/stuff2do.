@@ -1,1 +1,1 @@
-# front-end-project-1
+# solo

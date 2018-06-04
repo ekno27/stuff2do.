@@ -1,0 +1,43 @@
+.container{
+    margin-top:2%;
+}
+
+
+
+.btn{
+    padding-left: 3%;
+    padding-right:3% ;
+    margin-right: 2%;
+}
+#category-buttons{
+    margin: 0 auto;
+}
+#submit{
+    margin-top:7.8px;
+}
+
+#map{
+    height: 70%;
+    margin-bottom: 400px;
+}
+#sub-card{
+    margin-bottom:7px
+}
+h2{
+    text-align: center;
+    margin: 5%;
+}
+#food{
+    margin-left: 4.3%;
+
+}
+#lodging{
+
+    background-color: purple;
+    color: white;
+}
+#append-venues{
+
+    height: 400px;
+    overflow-y: scroll;
+}
