@@ -6,7 +6,9 @@
     background-color: lightblue;
 }
 
-
+#sub-card:hover{
+    background-color: lightblue;
+}
 
 .btn{
     padding-left: 3%;
