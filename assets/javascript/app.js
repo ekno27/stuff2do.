@@ -113,19 +113,14 @@ $("#append-venues").on("click","#sub-event", function(){
     displayBandInfo(currVenue, city);
     $("#results").show();
     $("#venue-options").hide();
+
+    function reset(){document.getElementById("artist-name").value="Who are you seeing next?"};
+    reset();
    
     
     
 
 });
-
-//6/4/18-------
-$(document).ready(function(){
-  $("sub-event").hover(function(){
-      $(this).css("background-color", "yellow");
-  });
-});
-//end---------
 
 $("#category-buttons").on("click", ".btn",function(){
     category = $(this).attr("id");
