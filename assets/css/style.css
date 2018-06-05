@@ -1,24 +1,7 @@
-.container{
-    margin-top:2%;
-}
-
-
-
-.btn{
-    padding-left: 3%;
-    padding-right:3% ;
-    margin-right: 2%;
-}
-#category-buttons{
-    margin: 0 auto;
-}
-#submit{
-    margin-top:7.8px;
-}
 
 #map{
-    height: 70%;
-    margin-bottom: 400px;
+    height: 500px;
+    margin-bottom: 10px;
 }
 #sub-card{
     margin-bottom:7px
@@ -36,8 +19,29 @@ h2{
     background-color: purple;
     color: white;
 }
-#append-venues{
+#bar{
 
+    background-color: lightskyblue;
+    color: black;
+}
+#restaurant{
+
+    background-color: green;
+    color: white;
+}
+#parking{
+    background-color: goldenrod;
+    color: white;
+}
+.btn{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+#append-venues{
     height: 400px;
-    overflow-y: scroll;
+    overflow-y: auto;
+}
+#current-selection{
+    z-index: 1;
+    float: right;
 }
