@@ -17,7 +17,7 @@ $("#results").hide();
 $("#venue-options").hide();
 
 
-
+//fixes naming bug
 function displayArtistInfo(){
   queryAI = "https://rest.bandsintown.com/artists/"+artist+"?app_id=ekno27"
 
@@ -31,11 +31,14 @@ function displayArtistInfo(){
 }   
 
 //displays band info on corresponding div
- function displayBandInfo(venue, city){
-    //  console.log(venue);
+ function displayBandInfo(venue, city, region ){
+
+     console.log(country);
      $("#artist").text(artist);
      $("#venue").text("Venue: " + venue);
-     $("#city").text("City: " +  city);
+     $("#city").text("City: " +  city +" " +region + "\n \nCountry: "+ country );
+    
+
 }
 //functions that get ajax calls 
 // gets BIT data for usage
@@ -47,11 +50,28 @@ function eventOptions(artist){
         url: queryBIT,
         method: "GET"
     }).then(function(response){
-      
+
+      console.log(response);
+      if(response.length === 0 ){
+        $("#select-prompt").text("");
+       
+        $("#append-venues").html("<h2> Your artist does not have any concerts coming up </h2>");
+      }
+      else{
+        $("#select-prompt").text("Select a venue for "+ response[0].lineup[0]);
         for (var i = 0; i<response.length;i++){
+            var region; //pesky way to deal with rogue comma 
+            if (response[i].venue.region !==""){
+                var region = ", " + response[i].venue.region;
+            }
+            else{
+                region = ""
+            }
             var optionDiv = $("<div>");
             $(optionDiv).attr("id", "sub-event");
             $(optionDiv).attr("city", response[i].venue.city);
+            $(optionDiv).attr("region", response[i].venue.region);
+            $(optionDiv).attr("country", response[i].venue.country);
             $(optionDiv).attr("latitude", response[i].venue.latitude);
             $(optionDiv).attr("longitude", response[i].venue.longitude);
             $(optionDiv).attr("venue", response[i].venue.name);
@@ -62,18 +82,22 @@ function eventOptions(artist){
             cardTitle.text(response[i].venue.name);
             var subTitle = $("<h6>");
             subTitle.addClass("card-subtitle mb-2 text-muted");
-            subTitle.text(response[i].venue.city +", " +response[i].venue.region);
+            subTitle.text(response[i].venue.city +region);
+            var country =$("<h6>");
+            country.addClass("card-subtitle mb-2 text-muted");
+            country.text(response[i].venue.country);
             var date = $("<p>");
             date.text("Date: "+ response[i].datetime);
 
 
             $(optionDiv).append(cardTitle);
             $(optionDiv).append(subTitle);
+            $(optionDiv).append(country);            
             $(optionDiv).append(date);
             $("#append-venues").append(optionDiv);
 
         }
-
+        }
     });
 }
 
@@ -104,6 +128,7 @@ $(window).keydown(function(event){
         // eventOptions(artist, venue);
         }
         else{
+            event.preventDefault();
             alert("Please enter an artist!");
         }
     }
@@ -128,6 +153,7 @@ $("#submit").on("click", function(){
         return false;
     }
     else{
+        event.preventDefault();
         alert("Please enter an artist!");
         
     }
@@ -141,9 +167,12 @@ $("#append-venues").on("click","#sub-event", function(){
     var currVenue = $(this).attr("venue");
     // console.log(currVenue + "curr")
     var city = $(this).attr("city");
+    var region = $(this).attr("region");
+    country  = $(this).attr("country");
+   
     venueLocation = {lat: latitude, lng: longitude};
     initMap();
-    displayBandInfo(currVenue, city);
+    displayBandInfo(currVenue, city, region);
     $("#results").show();
     $("#venue-options").hide();
    
