@@ -179,6 +179,7 @@ function initMap() {
     //creating a marker for the venue 
     var marker = new google.maps.Marker({
     position: venueLocation,
+    animation: google.maps.Animation.DROP,
     map: map,
     title: venue
     });
@@ -256,7 +257,14 @@ function callback(results, status) {
     }
   }
   
-  
+  function toggleBounce(marker){
+    console.log("toog");
+    if (marker.getAnimation() !== null) {
+        marker.setAnimation(null);
+      } else {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+      }
+}
 
   //function will create markers
   function createMarker(place) {
@@ -282,6 +290,7 @@ function callback(results, status) {
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
             map: map,
+            animation: google.maps.Animation.DROP,
             position: place.geometry.location,
             icon: color,
             title: place.name,
@@ -290,6 +299,7 @@ function callback(results, status) {
     
         //adds information about the marker clicked onto the pin 
           google.maps.event.addListener(marker, 'click', function() {
+            toggleBounce(marker); //animates marker when clicked
             displaySelection(place);
             $("#location-name").text(place.name);
             // console.log(place.name);
