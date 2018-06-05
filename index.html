@@ -18,6 +18,7 @@
     <!-- Maps API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMJTxAsGFVN4EewaI3Kg5E5eHvC0FKuqs&callback=initMap&libraries=places"
     async ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
   
 </head>
@@ -33,22 +34,24 @@
     </div>
 
     <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-5 col-md-offset-8">
                 <!-- Search for artist -->
                 <form autocomplete="off">
                     <div class="form-group">
-                    <label for="exampleFormControlInput1">For whenever you don't know where to go before or after a concert.</label>
+                    <label for="exampleFormControlInput1"></label>
                     <input type="form" class="form-control" id="artist-name" placeholder="Enter an artist you will be seeing">
                     </div>
                 </form>
             </div>
-            <div class="col-md-5">
+           <!-- <div class="col-md-5">
                
-            </div>
+            </div>-->
             <div class="col-md-2">
                 <br>
                 <!--Responsive buttons -->
-                    <button class="btn btn-primary" id="submit"> Submit</button>
+                    <button class="btn btn-primary" id="submit"><i class="fa fa-search"></i></button>
+                   <!-- <i class="glyphicon glyphicon-search"></i>-->
+
             </div>
      </div>
 

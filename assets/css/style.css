@@ -19,7 +19,10 @@
     margin: 0 auto;
 }
 #submit{
-    margin-top:7.8px;
+    position: relative;
+    top: 10px;
+    left: 290px;
+
 }
 
 #map{
@@ -46,4 +49,10 @@ h2{
 
     height: 400px;
     overflow-y: scroll;
+}
+
+#artist-name{
+    position: relative;
+    top: 10px;
+    left: 320px;
 }
