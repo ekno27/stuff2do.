@@ -3,6 +3,10 @@
     height: 420px;
     margin-bottom: 10px;
 }
+#venue-option:hover{
+    background-color: lightgray;
+ }
+ 
 #sub-card{
     margin-bottom:7px
 }
@@ -13,6 +17,9 @@ h2{
 #food{
     margin-left: 4.3%;
 
+}
+.marker:hover{
+    transform: scale(1.2);
 }
 #lodging{
 

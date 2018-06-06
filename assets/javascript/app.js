@@ -1,4 +1,5 @@
 //variable declarations
+var currentPlace;
 var venuePin;
 var map;
 var artist;
@@ -65,7 +66,7 @@ $(document).ready(function () {
         $("#venue-head").text("Select a venue for "+ response[0].lineup[0] +": ");
       for (var i = 0; i < response.length; i++) {
         var optionDiv = $("<div>");
-        $(optionDiv).attr("id", "sub-event");
+        $(optionDiv).attr("id", "venue-option");
         $(optionDiv).attr("city", response[i].venue.city);
         $(optionDiv).attr("latitude", response[i].venue.latitude);
         $(optionDiv).attr("longitude", response[i].venue.longitude);
@@ -175,7 +176,7 @@ $(document).ready(function () {
 
   });
 
-  $("#append-venues").on("click", "#sub-event", function () {
+  $("#append-venues").on("click", "#venue-option", function () {
     // console.log(this);
     latitude = parseFloat($(this).attr("latitude"));
     longitude = parseFloat($(this).attr("longitude"));
@@ -207,6 +208,10 @@ $(document).ready(function () {
 
   });
 
+  $("#related-results").on("click","#sub-card",function(place){
+    console.log("yeet");
+  });
+
   $("#category-buttons").on("click", ".btn", function () {
     category = $(this).attr("id");
     // console.log(category);
@@ -221,13 +226,13 @@ function initMap() {
   //makes map centered at venue
   map = new google.maps.Map(document.getElementById("map"), {
     center: venueLocation,
-    zoom: 15
+    zoom: 14
   });
   //selects what kind of service will be given
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch({
     location: venueLocation,
-    radius: 1000,
+    radius: 900,
     type: [category]
   }, callback); //callback will check if the call was successful
 
@@ -242,6 +247,7 @@ function initMap() {
 
 //displays clicked marker
 function displaySelection(markerInfo) {
+  currentPlace = markerInfo;
   // console.log(markerInfo);
   var id = markerInfo.place_id;
   var detail = new google.maps.places.PlacesService(map);
@@ -279,6 +285,7 @@ function displayRelatedResults(markerInfo) {
 
       var resultDiv = $("<div>");
       $(resultDiv).attr("id", "sub-card");
+      $(resultDiv).attr("place", place);
       resultDiv.addClass("card w3-animate-left");
       //making card-title
       var cardTitle = $("<h5>");
@@ -310,7 +317,11 @@ function callback(results, status) {
   }
 }
 
-
+function stopAnimation(marker) {
+  setTimeout(function () {
+      marker.setAnimation(null);
+  }, 3000);
+}
 
 //function will create markers
 function createMarker(place) {
@@ -343,13 +354,15 @@ function createMarker(place) {
 
     });
 
+   
     //adds information about the marker clicked onto the pin 
     google.maps.event.addListener(marker, 'click', function () {
       displaySelection(place);
-      $("#location-name").text(place.name);
+      marker.setAnimation(google.maps.Animation.BOUNCE);
+      stopAnimation(marker);
       //shows links that would otherwise be broken
-      $("#location-rate").fadeIn(1000);
-      $("#page-link").fadeIn(1000);
+      $("#location-rate").show();
+      $("#page-link").show();
 
 
       // console.log(place.name);
