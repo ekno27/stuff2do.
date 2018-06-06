@@ -14,8 +14,8 @@ var venueLocation = {
 var category = "restaurant";
 var queryBIT;
 $(document).ready(function () {
-
-
+  $("#intro-text").text("...For whenever you don't know where to go before or after a concert.");
+  $("#intro-text").fadeIn(1000);
   //initially hiding results
   $("#results").hide();
   $("#venue-options").hide();
@@ -39,21 +39,21 @@ $(document).ready(function () {
       method: "GET"
     }).then(function (response) {
       artist = response.name
-      console.log(response)
+      // console.log(response)
     });
   }
 
   //displays band info on corresponding div
-  function displayBandInfo(venue, city) {
+  function displayBandInfo(venue, city, country) {
     //  console.log(venue);
     $("#artist").text(artist);
     $("#venue").text("Venue: " + venue);
-    $("#city").text("City: " + city);
+    $("#city").text(city+ ", "+ country);
   }
   //functions that get ajax calls 
   // gets BIT data for usage
   function eventOptions(artist) {
-    console.log("hello");
+    // console.log("hello");
     queryBIT = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=ekno27";
 
     //ajax call for bandsintown API
@@ -62,11 +62,16 @@ $(document).ready(function () {
       method: "GET"
     }).then(function (response) {
       if(response.length !== 0){
+        $("#artist-name").val("");
+        $("#artist-name").attr("placeholder","Who are you going to see?");
+    
 
         $("#venue-head").text("Select a venue for "+ response[0].lineup[0] +": ");
       for (var i = 0; i < response.length; i++) {
+        regionAndCountry =  response[i].venue.region + " "+ response[i].venue.country;
         var optionDiv = $("<div>");
         $(optionDiv).attr("id", "venue-option");
+        $(optionDiv).attr("country", response[i].venue.country);
         $(optionDiv).attr("city", response[i].venue.city);
         $(optionDiv).attr("latitude", response[i].venue.latitude);
         $(optionDiv).attr("longitude", response[i].venue.longitude);
@@ -78,7 +83,7 @@ $(document).ready(function () {
         cardTitle.text(response[i].venue.name);
         var subTitle = $("<h6>");
         subTitle.addClass("card-subtitle mb-2 text-muted");
-        subTitle.text(response[i].venue.city + ", " + response[i].venue.region);
+        subTitle.text(response[i].venue.city + ", " + regionAndCountry);
         var date = $("<p>");
         date.text("Date: " + response[i].datetime);
 
@@ -107,9 +112,11 @@ $(document).ready(function () {
   //event listener for enter key
   $(window).keydown(function (event) {
     if (event.keyCode == 13) {
+      
 
       if (artist = $("#artist-name").val().trim() !== "") {
         event.preventDefault();
+        $("#intro").hide();
         $("#results").hide();
         //initially hiding potentially broken links
         $("#city").hide();
@@ -146,6 +153,7 @@ $(document).ready(function () {
     if ($("#artist-name").val().trim() !== "") {
 
       event.preventDefault();
+      $("#intro").hide();
       $("#results").hide();
       //initially hiding potentially broken links
       $("#city").hide();
@@ -181,14 +189,14 @@ $(document).ready(function () {
     latitude = parseFloat($(this).attr("latitude"));
     longitude = parseFloat($(this).attr("longitude"));
     var currVenue = $(this).attr("venue");
-    // console.log(currVenue + "curr")
+    var country = $(this).attr("country");
     var city = $(this).attr("city");
     venueLocation = {
       lat: latitude,
       lng: longitude
     };
     initMap();
-    displayBandInfo(currVenue, city);
+    displayBandInfo(currVenue, city,country);
     $("#results").fadeIn(1000);
     $("#map").fadeIn(1000);
     $("#venue-options").hide();
@@ -320,7 +328,7 @@ function callback(results, status) {
 function stopAnimation(marker) {
   setTimeout(function () {
       marker.setAnimation(null);
-  }, 3000);
+  }, 2000);
 }
 
 //function will create markers
