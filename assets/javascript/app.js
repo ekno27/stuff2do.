@@ -15,7 +15,7 @@ var category = "restaurant";
 var queryBIT;
 $(document).ready(function () {
   $("#intro-text").text("...For whenever you don't know where to go before or after a concert.");
-  $("#intro-text").fadeIn(1000);
+  $("#intro-text").show();
   //initially hiding results
   $("#results").hide();
   $("#venue-options").hide();
@@ -186,6 +186,7 @@ $(document).ready(function () {
 
   $("#append-venues").on("click", "#venue-option", function () {
     // console.log(this);
+    
     latitude = parseFloat($(this).attr("latitude"));
     longitude = parseFloat($(this).attr("longitude"));
     var currVenue = $(this).attr("venue");
@@ -196,11 +197,16 @@ $(document).ready(function () {
       lng: longitude
     };
     initMap();
+    $("#artist-name").val("");
+    $("#artist-name").attr("placeholder","Who are you going to see next?");
+    
+    
     displayBandInfo(currVenue, city,country);
-    $("#results").fadeIn(1000);
-    $("#map").fadeIn(1000);
     $("#venue-options").hide();
     $("#venue-list").hide();
+    $("#results").fadeIn(1000);
+    console.log("in");
+    $("#map").fadeIn(2000);
     $("#related").fadeIn(1000);
     $("#navbar").fadeIn(1000);
     $("#venue").fadeIn(1000);
@@ -209,9 +215,7 @@ $(document).ready(function () {
     $("#related").fadeIn(1000);
     $("#map-buttons").fadeIn(1000);
     $("#city").fadeIn(1000);
-    $("#artist-name").val("");
-    $("#artist-name").attr("placeholder","Who are you going to see next?");
-
+    
 
 
   });
@@ -221,12 +225,22 @@ $(document).ready(function () {
   });
 
   $("#category-buttons").on("click", ".btn", function () {
+    console.log("out");
+    $("#map").fadeOut("fast");
     category = $(this).attr("id");
-    // console.log(category);
-    initMap();
+    
+    
+    showMap();
+
   });
 
 }); //end of document.ready
+
+function showMap(marker) {
+  initMap();
+  console.log("in");
+  $("#map").fadeIn(1500); 
+}
 
 //google functions
 function initMap() {
