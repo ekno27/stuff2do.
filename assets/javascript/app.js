@@ -123,12 +123,12 @@ $(document).ready(function () {
         $("#current-selection").hide();
         //show results
         $("#append-venues").empty();
-        $("#venue-options").show();
+        $("#venue-options").fadeIn(1000);
 
         //var declaration 
         artist = $("#artist-name").val().trim();
 
-        $("#venue-list").show();
+        $("#venue-list").fadeIn(1000);
         displayArtistInfo()
         eventOptions(artist);
         return false;
@@ -164,7 +164,7 @@ $(document).ready(function () {
       artist = $("#artist-name").val().trim();
       // eventOptions(artist, venue);
 
-      $("#venue-list").show();
+      $("#venue-list").fadeIn(1000);
       displayArtistInfo()
       eventOptions(artist);
       return false;
@@ -188,18 +188,18 @@ $(document).ready(function () {
     };
     initMap();
     displayBandInfo(currVenue, city);
-    $("#results").show();
-    $("#map").show();
+    $("#results").fadeIn(1000);
+    $("#map").fadeIn(1000);
     $("#venue-options").hide();
     $("#venue-list").hide();
-    $("#related").show();
-    $("#navbar").show();
-    $("#venue").show();
-    $("#artist").show();
-    $("#current-selection").show();
-    $("#related").show();
-    $("#map-buttons").show();
-    $("#city").show();
+    $("#related").fadeIn(1000);
+    $("#navbar").fadeIn(1000);
+    $("#venue").fadeIn(1000);
+    $("#artist").fadeIn(1000);
+    $("#current-selection").fadeIn(1000);
+    $("#related").fadeIn(1000);
+    $("#map-buttons").fadeIn(1000);
+    $("#city").fadeIn(1000);
     $("#artist-name").val("");
     $("#artist-name").attr("placeholder","Who are you going to see next?");
 
@@ -235,7 +235,8 @@ function initMap() {
   var marker = new google.maps.Marker({
     position: venueLocation,
     map: map,
-    title: venue
+    title: venue,
+    animation: google.maps.Animation.DROP
   });
 }
 
@@ -278,7 +279,7 @@ function displayRelatedResults(markerInfo) {
 
       var resultDiv = $("<div>");
       $(resultDiv).attr("id", "sub-card");
-      resultDiv.addClass("card");
+      resultDiv.addClass("card w3-animate-left");
       //making card-title
       var cardTitle = $("<h5>");
       cardTitle.addClass("card-title");
@@ -338,6 +339,7 @@ function createMarker(place) {
       position: place.geometry.location,
       icon: color,
       title: place.name,
+      animation: google.maps.Animation.DROP
 
     });
 
@@ -346,8 +348,8 @@ function createMarker(place) {
       displaySelection(place);
       $("#location-name").text(place.name);
       //shows links that would otherwise be broken
-      $("#location-rate").show();
-      $("#page-link").show();
+      $("#location-rate").fadeIn(1000);
+      $("#page-link").fadeIn(1000);
 
 
       // console.log(place.name);
