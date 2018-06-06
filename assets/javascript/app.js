@@ -329,16 +329,16 @@ function createMarker(place) {
   switch (category) {
     //markers will be of different colors depending on category
     case "restaurant":
-      color = "http://maps.google.com/mapfiles/ms/icons/green-dot.png";
+      color = "https://maps.google.com/mapfiles/ms/icons/green-dot.png";
       break;
     case "bar":
-      color = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
+      color = "https://maps.google.com/mapfiles/ms/icons/blue-dot.png";
       break;
     case "parking":
-      color = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png";
+      color = "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png";
       break;
     case "lodging":
-      color = "http://maps.google.com/mapfiles/ms/icons/purple-dot.png";
+      color = "https://maps.google.com/mapfiles/ms/icons/purple-dot.png";
       break;
 
   }
