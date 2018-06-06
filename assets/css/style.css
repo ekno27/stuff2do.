@@ -6,6 +6,9 @@
 #venue-option:hover{
     background-color: lightgray;
  }
+#slick-title{
+    text-align: center;
+}
  
 #sub-card{
     margin-bottom:7px
