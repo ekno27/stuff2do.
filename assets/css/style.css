@@ -1,6 +1,6 @@
 
 #map{
-    height: 500px;
+    height: 420px;
     margin-bottom: 10px;
 }
 #sub-card{
@@ -32,13 +32,14 @@ h2{
 #parking{
     background-color: goldenrod;
     color: white;
+    border: none;
 }
 .btn{
     margin-left: 5px;
     margin-right: 5px;
 }
 #append-venues{
-    height: 400px;
+    height: 350px;
     overflow-y: auto;
 }
 #current-selection{

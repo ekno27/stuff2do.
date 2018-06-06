@@ -60,7 +60,9 @@ $(document).ready(function () {
       url: queryBIT,
       method: "GET"
     }).then(function (response) {
+      if(response.length !== 0){
 
+        $("#venue-head").text("Select a venue for "+ response[0].lineup[0] +": ");
       for (var i = 0; i < response.length; i++) {
         var optionDiv = $("<div>");
         $(optionDiv).attr("id", "sub-event");
@@ -83,9 +85,17 @@ $(document).ready(function () {
         $(optionDiv).append(cardTitle);
         $(optionDiv).append(subTitle);
         $(optionDiv).append(date);
+
         $("#append-venues").append(optionDiv);
 
       }
+    }
+    else{
+      $("#artist-name").val("");
+      $("#artist-name").attr("placeholder","Search for another artist.");
+  
+        $("#venue-head").text("The artist you've searched for does not have any concerts coming up.");
+    }
 
     });
   }
@@ -100,6 +110,17 @@ $(document).ready(function () {
       if (artist = $("#artist-name").val().trim() !== "") {
         event.preventDefault();
         $("#results").hide();
+        //initially hiding potentially broken links
+        $("#city").hide();
+        $("#location-rate").hide();
+        $("#page-link").hide();
+        $("#map").hide();
+        $("#venue-list").hide();
+        $("#related").hide();
+        $("#venue").hide();
+        $("#artist").hide();
+        $("#map-buttons").hide();
+        $("#current-selection").hide();
         //show results
         $("#append-venues").empty();
         $("#venue-options").show();
@@ -125,6 +146,17 @@ $(document).ready(function () {
 
       event.preventDefault();
       $("#results").hide();
+      //initially hiding potentially broken links
+      $("#city").hide();
+      $("#location-rate").hide();
+      $("#page-link").hide();
+      $("#map").hide();
+      $("#venue-list").hide();
+      $("#related").hide();
+      $("#venue").hide();
+      $("#artist").hide();
+      $("#map-buttons").hide();
+      $("#current-selection").hide();
       //show results
       $("#append-venues").empty();
 
@@ -189,7 +221,7 @@ function initMap() {
   //makes map centered at venue
   map = new google.maps.Map(document.getElementById("map"), {
     center: venueLocation,
-    zoom: 14
+    zoom: 15
   });
   //selects what kind of service will be given
   var service = new google.maps.places.PlacesService(map);
@@ -222,7 +254,7 @@ function displaySelection(markerInfo) {
       $("#location-name").text(place.name);
       $("#location-rate").text("Rating: " + place.rating + "/5");
       $(".location-address").text("Address: " + place.formatted_address);
-      $("#page-link").text("Website");
+      $("#page-link").text("Visit their website");
       $("#page-link").attr("href", place.website);
     }
   });
